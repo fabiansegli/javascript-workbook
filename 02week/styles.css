@@ -1,0 +1,15 @@
+.box {
+    border: 1px inset grey;
+    width: 20em;
+    height: 2em;
+    display: inline-block;
+    padding: .5em;
+  }
+  
+  label {
+    display: block;
+  }
+  
+  .bump-space {
+      padding-top: 30px;
+  }

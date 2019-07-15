@@ -6,12 +6,12 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-const vowel = "aeiou";
+const vowels = ["a", "e", "i", "o", "u"];
 
 const detectVowel = (word) => {
   for  (let i=0; i < word.length; i++) {
-    if (vowel.indexOf(word[i])!== -1)
-    return[i]
+    if (vowels.indexOf(word[i])!== -1);
+    return[i];
   }
 }
 
@@ -31,7 +31,7 @@ function getPrompt() {
   });
 }
 
-// Tests
+Tests
 
 if (typeof describe === 'function') {
 
