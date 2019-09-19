@@ -30,22 +30,6 @@ for (let i = 1; i < word.length && !append; i++) {
 }
 return word2 + append;
 }
-// const vowel = "aeiou";
-
-// const detectVowel = (word) => {
-//   for  (let i=0; i < word.length; i++) {
-//     if (vowel.indexOf(word[i])!== -1)
-//     return[i]
-//   }
-// }
-
-// const pigLatin = (word) => { 
-//   const firstVowel = detectVowel(word);
-//   if(firstVowel > 0) {
-//     return word.slice(firstVowel) + word.slice(0, firstVowel) + "ay";
-//   }
-//   return word + "way";
-// }
 
 
 function getPrompt() {
