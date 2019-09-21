@@ -14,7 +14,6 @@ function pigLatin(word) {
 
   function isVowel(char) {
     const vowels = ["a", "e", "i", "o", "u", "y"];
-    //console.log(char)
     return vowels.includes(char);
   }
   
