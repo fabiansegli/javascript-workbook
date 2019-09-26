@@ -1,0 +1,25 @@
+// for(num = 1; num <=100; num++) {
+// console.log(num);
+// } if (num = 100);
+
+// even numbers
+// console.log("You got this!")
+//  for(x = 0; x<=100; x+=2) {
+//    console.log(x);
+//  }
+
+//do and while loop
+//  var i=1;
+// do{
+//   console.log("using a do/while", i);
+//   i++;
+// } while(i<=100);
+
+// even and odds number
+// for(var i=1; i<=100; i++){
+//   if(i %2 ==0){
+//     console.log("is even", i);
+//   } else {
+//     console.log("is odd", i);
+//   }
+// }
