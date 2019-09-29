@@ -6,21 +6,28 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-const vowel = "aeiou";
 
-const detectVowel = (word) => {
-  for  (let i=0; i < word.length; i++) {
-    if (vowel.indexOf(word[i])!== -1)
-    return[i]
+function pigLatin(word) {
+  word = word.trim().toLowerCase();
+  let word2 = word;
+  let append;
+
+  function isVowel(char) {
+    const vowels = ["a", "e", "i", "o", "u", "y"];
+    return vowels.includes(char);
+  }
+  
+if (isVowel(word[0])) {
+  append = "way";
+} else {
+for (let i = 1; i < word.length && !append; i++) {
+  if (isVowel(word[i])) {
+    append = word.slice(0, i) + "ay";
+    word2 = word.slice(i);
   }
 }
-
-const pigLatin = (word) => { 
-  const firstVowel = detectVowel(word);
-  if(firstVowel > 0) {
-    return word.slice(firstVowel) + word.slice(0, firstVowel) + "ay";
-  }
-  return word + "way";
+}
+return word2 + append;
 }
 
 
