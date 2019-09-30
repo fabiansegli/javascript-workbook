@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgb(7, 181, 194);
+}
+main {
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-around;
+  }
+
+h1 {
+    text-align: center;
+}
+h2 {
+    text-align: center;
+}
+input {
+    margin: 5% auto;
+    height: 10%;
+    font-size: 25px;
+    border-radius: 20px;
+    background: white;
+    padding: 10px; 
+    text-align: center;
+    color: rgb(19, 20, 19);
+    font-style: arial;
+    box-shadow: 9px 9px 9px black;
+}
+
+button {
+    margin: 4% auto;
+    height: 5%;
+    font-size: 20px;
+    color: azure;
+    border-radius: 25px;
+    background: green;
+    padding: 15px; 
+    box-shadow: 5px 5px 5px black;
+}
+
+  span {
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 25px;
+  }
