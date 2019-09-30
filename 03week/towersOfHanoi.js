@@ -19,23 +19,31 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
-function movePiece() {
+function movePiece(startStack, endStack) {
   // Your code here
+  let grabbed = stacks[startStack].pop();
+  console.log(grabbed);
+  stacks[endStack].push(grabbed);
 
 }
 
-function isLegal() {
+function isLegal(startStack, endStack) {
   // Your code here
-
+ 
 }
 
 function checkForWin() {
   // Your code here
+  
 
 }
 
 function towersOfHanoi(startStack, endStack) {
   // Your code here
+  if (isLegal(startStack, endStack) === true) {
+    movePiece(startStack, endStack);
+    checkForWin(startStack, endStack);
+  }
 
 }
 

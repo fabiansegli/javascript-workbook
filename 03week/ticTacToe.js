@@ -1,168 +1,46 @@
-'use strict';
+let game = ['-','-','-','-','-','-','-','-','-']
+let turn = 'X'
 
-const assert = require('assert');
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-let board = [
-  [' ', ' ', ' '],
-  [' ', ' ', ' '],
-  [' ', ' ', ' ']
-];
+const win = [
+  [1,2,3],
+  [4,5,6],
+  [7,8,9],
+  [1,4,7],
+  [2,5,8],
+  [3,6,9],
+  [1,5,9],
+  [3,5,7]
+]
 
-let playerTurn = 'X';
+const play = function(boxNumber){
 
-function printBoard() {
-  console.log('   0  1  2');
-  console.log('0 ' + board[0].join(' | '));
-  console.log('  ---------');
-  console.log('1 ' + board[1].join(' | '));
-  console.log('  ---------');
-  console.log('2 ' + board[2].join(' | '));
-}
+  let box = document.getElementById('box'+boxNumber)
 
-function horizontalWin() {
-  if ((board[0][0] === "X") && (board[0][1] === "X") && (board[0][2] === "X")) {
-    return true;
-  } else if ((board[1][0] === "X") && (board[1][1] === "X") && (board[1][2] === "X")) {
-    return true;
-  } else if ((board[2][0] === "X") && (board[2][1] === "X") && (board[2][2] === "X")) {
-    return true;
-  } else if ((board[0][0] === "O") && (board[0][1] === "O") && (board[0][2] === "O")) {
-    return true;
-  } else if ((board[1][0] === "O") && (board[1][1] === "O") && (board[1][2] === "O")) {
-    return true;
-  } else if ((board[2][0] === "O") && (board[2][1] === "O") && (board[2][2] === "O")) {
-    return true;
-  }
-}
+  if (box.textContent === '-') {
 
-function verticalWin() {
-   if ((board[0][0] === "X") && (board[1][0] === "X") && (board[2][0] === "X")) {
-    return true;
-  } else if ((board[0][1] === "X") && (board[1][1] === "X") && (board[2][1] === "X")) {
-    return true;
-  } else if ((board[0][2] === "X") && (board[1][2] === "X") && (board[2][2] === "X")) {
-    return true;
-  } else if ((board[0][0] === "O") && (board[1][0] === "O") && (board[2][0] === "O")) {
-    return true;
-  } else if ((board[0][1] === "O") && (board[1][1] === "O") && (board[2][1] === "O")) {
-    return true;
-  } else if ((board[0][2] === "O") && (board[1][2] === "O") && (board[2][2] === "O")) {
-    return true;
-  }
-}
+    box.textContent = turn
+    box.style.color = '#444'
+    game[boxNumber - 1] = turn
 
-function diagonalWin() {
-  if ((board[0][0] === "X") && (board[1][1] === "X") && (board[2][2] === "X")) {
-    return true;
-  } else if ((board[2][0] === "X") && (board[1][1] === "X") && (board[0][2] === "X")) {
-    return true;
-  } else if ((board[0][0] === "O") && (board[1][1] === "O") && (board[2][2] === "O")) {
-    return true;
-  } else if ((board[2][0] === "O") && (board[1][1] === "O") && (board[0][2] === "O")) {
-    return true;
-  }
-}
+    for (let i = 0; i < win.length; i++) {
+      const match1 = game[win[i][0]-1]
+      const match2 = game[win[i][1]-1]
+      const match3 = game[win[i][2]-1]
+      if (match1 === turn && match2 === turn && match3 === turn) {
+        const title = document.getElementById('box5')
+        const gameBoard = document.getElementById('container')
+        gameBoard.style.pointerEvents = 'none'
+        gameBoard.style.backgroundColor = 'goldenrod'
+        gameBoard.style.boxShadow = '0 0 10px 15px goldenrod'
+        title.textContent = turn + ' WINS!'
+      }
+    }
 
-function checkForWin() {
- if (verticalWin()) {
-   console.log("It's a vertical win!!");
- }else if (horizontalWin()){
-   console.log("It's a horizontal win!!");
- } else if (diagonalWin()) {
-   console.log("It's a diagonal win!!");
- } else {
-   return false
- }
-}
-
-function movePiece(row, column) {
-  playerTurn === "X"
-  board[row][column] = playerTurn
-}
-function whoseTurn() {
-  if (playerTurn === "X") {
-    playerTurn = "0"
-  } else {
-    playerTurn = "X"
-  }
-}
-
-function correctInput(row, column) {
-if ((( row === "0") || (row === "1") || (row === "2")) && (( column === "0") || (column === "1") || (column === "2"))) {
-return true
-}else {
-  return false
-}
-}
-
-function isEmpty(row, column) {
-if(board[row][column] === ' ') {
-  return true
-}else {
-  return false
-}
-}
-
-function ticTacToe(row, column) {
-  if(isEmpty(row, column) && correctInput(row, column)) {
-    movePiece(row, column)
-    if(checkForWin()) {
-      console.log(`${playerTurn} wins`)
+    if (turn === 'X') {
+      turn = 'O'
     } else {
-      whoseTurn()
-    } 
-  } else console.log("input invalid")
-}
-
-function getPrompt() {
-  printBoard();
-  console.log("It's Player " + playerTurn + "'s turn.");
-  rl.question('row: ', (row) => {
-    rl.question('column: ', (column) => {
-      ticTacToe(row, column);
-      getPrompt();
-    });
-  });
-
-}
-
-
-
-// Tests
-
-if (typeof describe === 'function') {
-
-  describe('#ticTacToe()', () => {
-    it('should place mark on the board', () => {
-      ticTacToe(1, 1);
-      assert.deepEqual(board, [ [' ', ' ', ' '], [' ', 'X', ' '], [' ', ' ', ' '] ]);
-    });
-    it('should alternate between players', () => {
-      ticTacToe(0, 0);
-      assert.deepEqual(board, [ ['O', ' ', ' '], [' ', 'X', ' '], [' ', ' ', ' '] ]);
-    });
-    it('should check for vertical wins', () => {
-      board = [ [' ', 'X', ' '], [' ', 'X', ' '], [' ', 'X', ' '] ];
-      assert.equal(verticalWin(), true);
-    });
-    it('should check for horizontal wins', () => {
-      board = [ ['X', 'X', 'X'], [' ', ' ', ' '], [' ', ' ', ' '] ];
-      assert.equal(horizontalWin(), true);
-    });
-    it('should check for diagonal wins', () => {
-      board = [ ['X', ' ', ' '], [' ', 'X', ' '], [' ', ' ', 'X'] ];
-      assert.equal(diagonalWin(), true);
-    });
-    it('should detect a win', () => {
-      assert.equal(checkForWin(), true);
-    });
-  });
-} else {
-
-  getPrompt();
-
+      turn = 'X'
+    }
+    console.log(game, turn)
+  }
 }
