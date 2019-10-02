@@ -34,6 +34,9 @@ function generateHint() {
 
 function mastermind(guess) {
   solution = 'abcd'; // Comment this out to generate a random solution
+  board.push(guess)
+  let hint = generateHint(guess)
+  console.log(hint);
   // your code here
 }
 
