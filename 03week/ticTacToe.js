@@ -16,10 +16,9 @@ const play = function(boxNumber){
 
   let box = document.getElementById('box'+boxNumber)
 
-  if (box.textContent === '-') {
+  if (box.textContent === '') {
 
     box.textContent = turn
-    box.style.color = '#444'
     game[boxNumber - 1] = turn
 
     for (let i = 0; i < win.length; i++) {
