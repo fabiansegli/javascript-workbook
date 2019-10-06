@@ -1,93 +1,45 @@
-'use strict';
+let game = ['-','-','-','-','-','-','-','-','-']
+let turn = 'X'
 
-const assert = require('assert');
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-let board = [
-  [' ', ' ', ' '],
-  [' ', ' ', ' '],
-  [' ', ' ', ' ']
-];
+const win = [
+  [1,2,3],
+  [4,5,6],
+  [7,8,9],
+  [1,4,7],
+  [2,5,8],
+  [3,6,9],
+  [1,5,9],
+  [3,5,7]
+]
 
-let playerTurn = 'X';
+const play = function(boxNumber){
 
-function printBoard() {
-  console.log('   0  1  2');
-  console.log('0 ' + board[0].join(' | '));
-  console.log('  ---------');
-  console.log('1 ' + board[1].join(' | '));
-  console.log('  ---------');
-  console.log('2 ' + board[2].join(' | '));
-}
+  let box = document.getElementById('box'+boxNumber)
 
-function horizontalWin() {
-  // Your code here
-}
+  if (box.textContent === '') {
 
-function verticalWin() {
-  // Your code here
-}
+    box.textContent = turn
+    game[boxNumber - 1] = turn
 
-function diagonalWin() {
-  // Your code here
-}
+    for (let i = 0; i < win.length; i++) {
+      const match1 = game[win[i][0]-1]
+      const match2 = game[win[i][1]-1]
+      const match3 = game[win[i][2]-1]
+      if (match1 === turn && match2 === turn && match3 === turn) {
+        const title = document.getElementById('box5')
+        const gameBoard = document.getElementById('container')
+        gameBoard.style.pointerEvents = 'none'
+        gameBoard.style.backgroundColor = 'goldenrod'
+        gameBoard.style.boxShadow = '0 0 10px 15px goldenrod'
+        title.textContent = turn + ' WINS!'
+      }
+    }
 
-function checkForWin() {
-  // Your code here
-}
-
-function ticTacToe(row, column) {
-  // Your code here
-}
-
-function getPrompt() {
-  printBoard();
-  console.log("It's Player " + playerTurn + "'s turn.");
-  rl.question('row: ', (row) => {
-    rl.question('column: ', (column) => {
-      ticTacToe(row, column);
-      getPrompt();
-    });
-  });
-
-}
-
-
-
-// Tests
-
-if (typeof describe === 'function') {
-
-  describe('#ticTacToe()', () => {
-    it('should place mark on the board', () => {
-      ticTacToe(1, 1);
-      assert.deepEqual(board, [ [' ', ' ', ' '], [' ', 'X', ' '], [' ', ' ', ' '] ]);
-    });
-    it('should alternate between players', () => {
-      ticTacToe(0, 0);
-      assert.deepEqual(board, [ ['O', ' ', ' '], [' ', 'X', ' '], [' ', ' ', ' '] ]);
-    });
-    it('should check for vertical wins', () => {
-      board = [ [' ', 'X', ' '], [' ', 'X', ' '], [' ', 'X', ' '] ];
-      assert.equal(verticalWin(), true);
-    });
-    it('should check for horizontal wins', () => {
-      board = [ ['X', 'X', 'X'], [' ', ' ', ' '], [' ', ' ', ' '] ];
-      assert.equal(horizontalWin(), true);
-    });
-    it('should check for diagonal wins', () => {
-      board = [ ['X', ' ', ' '], [' ', 'X', ' '], [' ', ' ', 'X'] ];
-      assert.equal(diagonalWin(), true);
-    });
-    it('should detect a win', () => {
-      assert.equal(checkForWin(), true);
-    });
-  });
-} else {
-
-  getPrompt();
-
+    if (turn === 'X') {
+      turn = 'O'
+    } else {
+      turn = 'X'
+    }
+    console.log(game, turn)
+  }
 }

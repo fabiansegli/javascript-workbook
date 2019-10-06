@@ -1,0 +1,33 @@
+body {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-family: Avenir;
+    background: aqua;
+}
+
+.container {
+    display: grid;
+    grid-template: repeat( 3, 1fr) / repeat( 3, 1fr);
+    margin: auto;
+    height: 600px;
+    width: 600px;
+    background: black;
+    padding: 4px;
+    
+}
+
+.box {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 0.5px solid whitesmoke;
+    height: 200px;
+    width: 200px;
+    font-size: 50px;
+    cursor: pointer;
+    color: rgba(110, 207, 30, 0.918);
+    box-shadow: 0 0 0 black;
+    
+}
