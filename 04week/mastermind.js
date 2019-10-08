@@ -28,8 +28,22 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function generateHint() {
+function generateHint(guess) {
   // your code here
+  let sameSpot = 0;
+  let solutionArr = solution.split("");
+  let guessArr = guess.split("");
+  for(let i=0; i < solutionArr.length; i++) {
+  if(solutionArr[i] === guessArr[i]) {
+    sameSpot = sameSpot + 1;
+    solutionArr[i] = "";
+  }
+  }
+  // let sameValue = 0;
+  // for( let i=0; i < solutionArr.length; i++) {
+  //   if()
+  // }// indexOf()
+  // console.log(sameSpot, solutionArr);
 }
 
 function mastermind(guess) {
