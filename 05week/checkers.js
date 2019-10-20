@@ -27,6 +27,29 @@ class Board {
       }
     }
   }
+  setBoard() {
+      for(let row=5; row < this.grid.length; row++) {
+      for(let col=0; col < this.grid.length; col++) {
+        if(col % 2 === 0 && row % 2 === 0) {
+           this.grid[row][col]= {symbol:'r'}
+        }
+        if(col % 2 === 1 && row % 2 === 1) {
+           this.grid[row][col]= {symbol:'r'}
+      }
+    }
+  }
+    for(let row=0; row < 3; row++) {
+      for(let col=0; col < this.grid.length; col++) {
+        if(col % 2 === 0 && row % 2 ===0) {
+          this.grid[row][col]= {symbol:'b'}
+        }
+        if(col % 2 === 1 && row % 2 ===1) {
+          this.grid[row][col]= {symbol:'b'}
+        }
+      }
+    }
+
+  }
   viewGrid() {
     // add our column numbers
     let string = "  0 1 2 3 4 5 6 7\n";
@@ -53,7 +76,7 @@ class Board {
   }
 
   // Your code here
-}
+  }
 
 class Game {
   constructor() {
@@ -61,6 +84,7 @@ class Game {
   }
   start() {
     this.board.createGrid();
+    this.board.setBoard();
   }
 }
 
